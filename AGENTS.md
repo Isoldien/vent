@@ -57,6 +57,6 @@ omission** — a passing run does not mean a phase is done.
 
 ## Notes
 
-- Renamed `esde` -> `vent` to avoid ES-DE trademark coupling (code namespace is `vent`;
+- Renamed `esde-steam` -> `vent`, remove affiliation to the frontend. This is only a appID scraper (code namespace is `vent`;
   still targets the ES-DE `.steam`/ROM convention).
 - No CI / pre-commit / `opencode.json` config present.
