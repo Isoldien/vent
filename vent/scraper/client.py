@@ -9,7 +9,10 @@ from requests import Session
 
 
 class SteamClient:
-    """Make authenticated/unauthenticated Steam API requests."""
+    """Make authenticated Steam API requests, returning parsed JSON.
+    
+    Original Steam API endpoint (ISteamApps) is deprecated, had to switch to IStoreService instead.:w
+    """
 
     def __init__(
         self,
@@ -23,4 +26,8 @@ class SteamClient:
         self, path: str, params: dict[str, Any] | None = None
     ) -> dict[str, Any]:
         """GET {path} under base_url with {params} and return parsed JSON."""
-        raise NotImplementedError
+        url = f"{self.base_url}/{path.lstrip('/')}"
+        response = self.session.get(url, params=params)
+        response.raise_for_status()
+        return response.json()
+
