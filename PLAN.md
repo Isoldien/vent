@@ -24,7 +24,7 @@ Note: **P6 before P5** so the CLI has a writer to call.
 
 Repo, git, `uv` project, package tree, `__init__` re-exports, stub signatures.
 
-### P2 paths / config — todo
+### P2 paths / config — done
 
 - `vent/output/paths.py` `ensure_output_dirs`
 - `vent/config/settings.py` `load_config`, `resolve_api_key`

@@ -8,8 +8,7 @@ class App(BaseModel):
 
     app_id: int
     name: str
-    type: str = "app"
-
+    # Type of app removed for now
 
 class OwnedGame(BaseModel):
     """A game owned by a profile or API-key account."""
