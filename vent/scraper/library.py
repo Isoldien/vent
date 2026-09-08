@@ -12,6 +12,7 @@ from vent.scraper.models import OwnedGame
 
 def from_profile(client: SteamClient, steam_id: int) -> list[OwnedGame]:
     """Return games owned by a public Steam profile ``steam_id``."""
+    
     raise NotImplementedError
 
 
