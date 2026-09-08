@@ -11,11 +11,9 @@ from vent.scraper.models import OwnedGame
 
 
 def from_profile(client: SteamClient, steam_id: int) -> list[OwnedGame]:
-    """Return games owned by a public Steam profile ``steam_id``."""
-    
+    """Return games owned by a steam profile using API Key."""
+    client.get_json(
+        "IPlayerService/GetOwnedGames/v1",
+        params={"steamid": steam_id, "include_appinfo": True},)
     raise NotImplementedError
 
-
-def from_api_key(client: SteamClient, api_key: str, account_id: int) -> list[OwnedGame]:
-    """Return games owned by the API-key account ``account_id``."""
-    raise NotImplementedError
