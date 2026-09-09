@@ -15,7 +15,13 @@ TABLE = "apps"
 
 def connect(db_path: Path) -> sqlite3.Connection:
     """Open (creating if needed) the SQLite connection for caching."""
-    raise NotImplementedError
+    #TODO: i think this how you do it 
+    try:
+        conn = sqlite3.connect(db_path)
+        return conn
+    except sqlite3.Error:
+        print(f"Database connection error: {db_path}")
+        raise
 
 
 class AppCache:
