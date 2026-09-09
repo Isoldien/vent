@@ -5,13 +5,23 @@ Outputs are project-relative and never touch the user's ROM folders:
 <project_root>/output/steam/<Name>.steam
 <project_root>/output/cache/cache.db
 
-``PROJECT_ROOT`` is resolved from the source tree: walking up from this file
-(``vent/output/paths.py``) three levels reaches the project root.
+``PROJECT_ROOT`` is resolved from the source tree when available (walking up
+from ``vent/output/paths.py`` three levels, validated by a ``pyproject.toml``
+marker); when installed as a wheel it falls back to the current directory so
+outputs never land in ``site-packages``.
 """
 
 from pathlib import Path
 
-PROJECT_ROOT: Path = Path(__file__).resolve().parent.parent.parent
+
+def _project_root() -> Path:
+    candidate = Path(__file__).resolve().parent.parent.parent
+    if (candidate / "pyproject.toml").is_file():
+        return candidate
+    return Path.cwd()
+
+
+PROJECT_ROOT: Path = _project_root()
 OUT_DIR: Path = PROJECT_ROOT / "output"
 STEAM_DIR: Path = OUT_DIR / "steam"
 CACHE_DIR: Path = OUT_DIR / "cache"

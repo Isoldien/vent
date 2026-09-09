@@ -32,6 +32,6 @@ class AppCache:
         """Return True if the cache is missing or older than ``max_age_days``."""
         raise NotImplementedError
 
-    def all(self) -> list[App]:
+    def all_apps(self) -> list[App]:
         """Return every cached app."""
         raise NotImplementedError

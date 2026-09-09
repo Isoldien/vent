@@ -1,7 +1,6 @@
-"""Fetch owned games from a public profile id or an API-key account.
+"""Fetch owned games from a public profile id.
 
-* from_profile(steam_id)   - IPlayerService/GetOwnedGames (public profile)
-* from_api_key(account_id) - IPlayerService/GetOwnedGames (own account)
+* from_profile(steam_id) - IPlayerService/GetOwnedGames
 
 Implementation deferred to Phase 3.
 """
@@ -14,6 +13,6 @@ def from_profile(client: SteamClient, steam_id: int) -> list[OwnedGame]:
     """Return games owned by a steam profile using API Key."""
     client.get_json(
         "IPlayerService/GetOwnedGames/v1",
-        params={"steamid": steam_id, "include_appinfo": True},
+        params={"steamid": steam_id, "include_appinfo": 1},
     )
     raise NotImplementedError

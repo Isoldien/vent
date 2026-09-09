@@ -14,11 +14,13 @@ class App(BaseModel):
 
 
 class OwnedGame(BaseModel):
-    """A game owned by a profile or API-key account."""
+    """A game owned by a profile, as reported by GetOwnedGames."""
 
-    app_id: int
+    model_config = ConfigDict(populate_by_name=True)
+
+    app_id: int = Field(alias="appid")
     name: str | None = None
-    playtime: int = 0
+    playtime_forever: int = 0
 
 
 class SteamFile(BaseModel):
