@@ -40,11 +40,11 @@ Done:
 - `vent/scraper/models.py` `App` / `OwnedGame` / `SteamFile`
   (aliases: `appid` → `app_id`, `playtime_forever`)
 - `tests/fixtures/app_list_sample.json` matches the live response shape
-
-Todo:
-
 - `vent/scraper/library.py` `from_profile`
-- `vent/search/cache.py` `connect`, `AppCache.ensure_populated`, `is_stale`, `all_apps`
+- `vent/search/cache.py` `connect`
+
+TODO: 
+`AppCache.ensure_populated`, `is_stale`, `all_apps`
 - unskip `tests/test_library_offline.py`
 
 ### P4 fuzzy — todo
