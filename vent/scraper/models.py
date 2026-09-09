@@ -1,14 +1,17 @@
 """Steam data models (pydantic)."""
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class App(BaseModel):
     """A Steam app (a game or other product) with its numeric id."""
 
-    app_id: int
+    model_config = ConfigDict(populate_by_name=True)
+
+    app_id: int = Field(alias="appid")
     name: str
     # Type of app removed for now
+
 
 class OwnedGame(BaseModel):
     """A game owned by a profile or API-key account."""

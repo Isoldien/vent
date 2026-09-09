@@ -14,6 +14,6 @@ def from_profile(client: SteamClient, steam_id: int) -> list[OwnedGame]:
     """Return games owned by a steam profile using API Key."""
     client.get_json(
         "IPlayerService/GetOwnedGames/v1",
-        params={"steamid": steam_id, "include_appinfo": True},)
+        params={"steamid": steam_id, "include_appinfo": True},
+    )
     raise NotImplementedError
-

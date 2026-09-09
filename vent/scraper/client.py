@@ -10,8 +10,9 @@ from requests import Session
 
 class SteamClient:
     """Make authenticated Steam API requests, returning parsed JSON.
-    
-    Original Steam API endpoint (ISteamApps) is deprecated, had to switch to IStoreService instead.:w
+
+    Uses the IStoreService interface; the old ISteamApps/GetAppList method
+    has been removed by Steam.
     """
 
     def __init__(
@@ -29,5 +30,5 @@ class SteamClient:
         url = f"{self.base_url}/{path.lstrip('/')}"
         response = self.session.get(url, params=params)
         response.raise_for_status()
-        return response.json()
-
+        data: dict[str, Any] = response.json()
+        return data
