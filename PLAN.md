@@ -51,10 +51,13 @@ Done:
 - unskip `tests/test_search.py`
 - verified offline: cache populate → `all_apps` → `fuzzy_search` (fixture-driven)
 
-### P6 output writer — todo
+### P6 output writer — done
 
-- `vent/output/write.py` `sanitize_name`, `steam_filename`, `resolve_collision`, `write_steam`
+- `vent/output/write.py` `sanitize_name`, `steam_filename`, `resolve_collision`,
+  `write_steam` (contents = appID only, via `SteamFile.serialize`)
 - unskip `tests/test_output.py`
+- verified offline pipeline: fixture → cache → `fuzzy_search` → `write_steam`
+  (incl. collision decline/accept paths)
 
 ### P5 CLI flow — todo
 
@@ -64,8 +67,8 @@ Done:
 
 ### P7 tests / lint — partially done
 
-Full gate (format / check / typecheck / test) is green. Still to do:
-unskip every `@pytest.mark.skip`; add the P5 tests.
+Full gate (format / check / typecheck / test) is green; 14 passed, 0 skipped.
+All P3–P6 tests unskipped. Still to do: add the P5 CLI tests.
 
 ### P8 package / docs — todo
 
