@@ -1,8 +1,8 @@
 """Configuration and secret resolution.
 
 * cache location + freshness settings
-* API key resolution from ``STEAM_API_KEY`` (env first, then ``.env``; keyring is
-a planned extension)
+* API key resolution from ``STEAM_API_KEY`` (env first, then ``.env``; an
+optional ``keyring`` extra is planned)
 """
 
 import os
@@ -40,10 +40,32 @@ def resolve_api_key() -> str | None:
     if not env_path.exists():
         return None
 
+    for key, value in _parse_env_file(env_path).items():
+        if key == "STEAM_API_KEY" and value:
+            return value
+    return None
+
+
+def _parse_env_file(env_path: Path) -> dict[str, str]:
+    """Parse a ``.env`` file into a dict of key/value pairs.
+
+    Tolerates comments, blank lines, ``export`` prefixes, spaces around ``=``,
+    and single/double-quoted values.
+    """
+    values: dict[str, str] = {}
     with env_path.open(mode="r", encoding="utf-8") as file:
         for line in file:
             clean = line.strip()
-            if clean.startswith("STEAM_API_KEY="):
-                _, _, value = clean.partition("=")
-                return value.strip() or None
-    return None
+            if not clean or clean.startswith("#") or "=" not in clean:
+                continue
+            key, _, value = clean.partition("=")
+            if key.startswith("export "):
+                key = key[len("export ") :]
+            key = key.strip()
+            if not key:
+                continue
+            value = value.strip()
+            if len(value) >= 2 and value[0] == value[-1] and value[0] in "'\"":
+                value = value[1:-1]
+            values[key] = value
+    return values

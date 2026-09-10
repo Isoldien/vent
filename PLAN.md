@@ -24,18 +24,25 @@ Note: **P6 before P5** so the CLI has a writer to call.
 
 Repo, git, `uv` project, package tree, `__init__` re-exports, stub signatures.
 
-### P2 paths / config — todo
+### P2 paths / config — done
 
 - `vent/output/paths.py` `ensure_output_dirs`
 - `vent/config/settings.py` `load_config`, `resolve_api_key`
 - add `tests/test_config.py`
 
-### P3 scraper + cache — todo
+### P3 scraper + cache — done
 
-- `vent/scraper/client.py` `SteamClient.get_json`
+Done:
+
+- `vent/scraper/client.py` `SteamClient.get_json` (live endpoint
+  `IStoreService/GetAppList/v1`, `key` param, timeout)
 - `vent/scraper/apps.py` `fetch_app_list`
-- `vent/scraper/library.py` `from_profile`, `from_api_key`
-- `vent/search/cache.py` `connect`, `AppCache.ensure_populated`, `is_stale`, `all`
+- `vent/scraper/models.py` `App` / `OwnedGame` / `SteamFile`
+  (aliases: `appid` → `app_id`, `playtime_forever`)
+- `tests/fixtures/app_list_sample.json` matches the live response shape
+- `vent/scraper/library.py` `from_profile`
+- `vent/search/cache.py` `connect`, `AppCache._init_db`, `AppCache.is_stale`,
+  `AppCache.ensure_populated`, `AppCache.all_apps`
 - unskip `tests/test_library_offline.py`
 
 ### P4 fuzzy — todo
@@ -54,9 +61,10 @@ Repo, git, `uv` project, package tree, `__init__` re-exports, stub signatures.
 - `vent/cli/app.py` `search`, `profile`, `api_key`
 - optionally add `tests/test_cli.py`
 
-### P7 tests / lint — todo
+### P7 tests / lint — partially done
 
-Unskip every `@pytest.mark.skip`; add the P2/P5 tests; run the full gate green.
+Full gate (format / check / typecheck / test) is green. Still to do:
+unskip every `@pytest.mark.skip`; add the P5 tests.
 
 ### P8 package / docs — todo
 

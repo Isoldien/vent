@@ -19,7 +19,7 @@ bodies are Phase-gated stubs that `raise NotImplementedError`.
   uv run mypy vent
   uv run pytest -q                          # whole suite
   uv run pytest -k test_steam_filename      # one test by name
-  uv run vent --help                        # CLI (OK after plain `uv sync`)
+   uv run vent --help                        # CLI (OK after plain `uv sync`)
    ```
 
 ## Conventions & gotchas
@@ -31,11 +31,13 @@ bodies are Phase-gated stubs that `raise NotImplementedError`.
   Never write into a user's ROM / ES-DE directory.
 - **Filename rule** (from the live Steam `name`): `:` -> `-`, whitespace run -> `-`,
   collapse repeats, trim ends (`Counter-Strike: Global` -> `Counter-Strike-Global`).
-- **Secrets:** API key comes from `STEAM_API_KEY` (env / `.env`, optional `keyring`).
-  It must never be written into a `.steam` file — that file holds only the appID.
-- **Offline design:** the Steam master list (`ISteamApps/GetAppList`) is fetched once
-  and cached in SQLite so fuzzy search is offline. That endpoint is often **blocked in
-  sandboxed networks** — tests use `tests/fixtures/app_list_sample.json`, never live calls.
+- **Secrets:** API key comes from `STEAM_API_KEY` (env / `.env`; an optional
+  `keyring` extra is planned). It must never be written into a `.steam` file —
+  that file holds only the appID.
+- **Offline design:** the Steam master list (`IStoreService/GetAppList/v1`) is
+  fetched once and cached in SQLite so fuzzy search is offline. That endpoint is
+  often **blocked in sandboxed networks** — tests use
+  `tests/fixtures/app_list_sample.json`, never live calls.
 - **Windows native** `C:\...\ROMs` / `ES-DE\ROMs` handling is out of scope for now;
   rely on WSL2.
 
@@ -57,6 +59,6 @@ omission** — a passing run does not mean a phase is done.
 
 ## Notes
 
-- Renamed `esde-steam` -> `vent`, remove affiliation to the frontend. This is only a appID scraper (code namespace is `vent`;
+- Renamed `esde-steam` -> `vent`, removed affiliation to the frontend. This is only an appID scraper (code namespace is `vent`;
   still targets the ES-DE `.steam`/ROM convention).
 - No CI / pre-commit / `opencode.json` config present.
