@@ -1,6 +1,4 @@
-"""Tests for fuzzy search (Phase 4). Currently skipped until implemented."""
-
-import pytest
+"""Tests for fuzzy search (Phase 4)."""
 
 from vent.scraper.models import App
 from vent.search.fuzzy import fuzzy_search
@@ -12,7 +10,6 @@ SAMPLE = [
 ]
 
 
-@pytest.mark.skip(reason="Phase 4")
 def test_fuzzy_search_finds_terria() -> None:
     results = fuzzy_search("terra", SAMPLE, limit=3)
     assert results

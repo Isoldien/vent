@@ -45,10 +45,11 @@ Done:
   `AppCache.ensure_populated`, `AppCache.all_apps`
 - unskip `tests/test_library_offline.py`
 
-### P4 fuzzy — todo
+### P4 fuzzy — done
 
-- `vent/search/fuzzy.py` `fuzzy_search`
+- `vent/search/fuzzy.py` `fuzzy_search` (rapidfuzz `WRatio`, min score 60)
 - unskip `tests/test_search.py`
+- verified offline: cache populate → `all_apps` → `fuzzy_search` (fixture-driven)
 
 ### P6 output writer — todo
 
