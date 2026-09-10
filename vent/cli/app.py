@@ -26,15 +26,6 @@ def search(
     """Fuzzy-find games from the local app-list cache, then write .steam files."""
     raise NotImplementedError
 
-
-@app.command()
-def profile(
-    profile_id: Annotated[int, typer.Argument(..., help="public Steam profile id")],
-) -> None:
-    """List owned games from a public Steam profile id, then write .steam files."""
-    raise NotImplementedError
-
-
 @app.command(name="apikey")
 def api_key() -> None:
     """List own games via STEAM_API_KEY, then write .steam files."""
