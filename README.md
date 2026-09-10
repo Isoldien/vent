@@ -1,4 +1,7 @@
 # vent
+![A image of the vent application running in a terminal](docs/images/Vent-CLI-1.png)
+
+---
 
 CLI to resolve Steam `appID`s and write them into `.steam` files for an
 ES-DE ROM library.
