@@ -16,9 +16,9 @@ def from_profile(client: SteamClient, steam_id: int) -> list[OwnedGame]:
         "IPlayerService/GetOwnedGames/v1",
         params={"steamid": steam_id, "include_appinfo": 1},
     )
-    
+
     games_list = response.get("response", {}).get("games", [])
-    
+
     for game in games_list:
         game_object = OwnedGame(**game)
         owned_games.append(game_object)

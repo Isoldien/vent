@@ -1,7 +1,4 @@
-"""Offline tests for the Steam client against the app-list fixture (Phase 3).
-
-Currently skipped until Phase 3 implementation.
-"""
+"""Offline tests for the Steam client against the app-list fixture (Phase 3)."""
 
 import json
 from pathlib import Path
@@ -12,7 +9,6 @@ from vent.scraper.apps import fetch_app_list
 from vent.scraper.client import SteamClient
 
 
-@pytest.mark.skip(reason="Phase 3")
 def test_fetch_app_list_from_fixture(
     monkeypatch: pytest.MonkeyPatch,
     sample_app_list_path: Path,

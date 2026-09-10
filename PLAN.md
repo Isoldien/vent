@@ -30,7 +30,7 @@ Repo, git, `uv` project, package tree, `__init__` re-exports, stub signatures.
 - `vent/config/settings.py` `load_config`, `resolve_api_key`
 - add `tests/test_config.py`
 
-### P3 scraper + cache — partially done
+### P3 scraper + cache — done
 
 Done:
 
@@ -41,10 +41,8 @@ Done:
   (aliases: `appid` → `app_id`, `playtime_forever`)
 - `tests/fixtures/app_list_sample.json` matches the live response shape
 - `vent/scraper/library.py` `from_profile`
-- `vent/search/cache.py` `connect`
-
-TODO: 
-`AppCache.ensure_populated`, `is_stale`, `all_apps`
+- `vent/search/cache.py` `connect`, `AppCache._init_db`, `AppCache.is_stale`,
+  `AppCache.ensure_populated`, `AppCache.all_apps`
 - unskip `tests/test_library_offline.py`
 
 ### P4 fuzzy — todo
