@@ -59,16 +59,24 @@ Done:
 - verified offline pipeline: fixture → cache → `fuzzy_search` → `write_steam`
   (incl. collision decline/accept paths)
 
-### P5 CLI flow — todo
+### P5 CLI flow — done
 
-- `vent/cli/prompts.py` `prompt_select`, `confirm_add_or_continue`
-- `vent/cli/app.py` `search`, `profile`, `api_key`
-- optionally add `tests/test_cli.py`
+- `vent/cli/prompts.py` `prompt_select` (rich table + number/'all' picker),
+  `confirm_add_or_continue`
+- `vent/cli/app.py` `search`, `apikey` (+ `_owned_flow` with cache-name
+  fallback for games missing a name). The `profile` command was dropped on
+  purpose (commit `a4d0793` — superseded by `apikey`); this supersedes the
+  earlier P5 bullet that listed it.
+- `tests/test_cli.py` — 9 tests, all offline
+- cross-phase fix: `from_profile` now passes the API key (GetOwnedGames
+  requires it), mirroring `fetch_app_list`
+- verified E2E offline: both flows drive the real cache → search →
+  writer pipeline, incl. collision decline/accept
 
-### P7 tests / lint — partially done
+### P7 tests / lint — done
 
-Full gate (format / check / typecheck / test) is green; 14 passed, 0 skipped.
-All P3–P6 tests unskipped. Still to do: add the P5 CLI tests.
+Full gate (format / check / typecheck / test) is green; 23 passed, 0 skipped.
+All P3–P6 tests unskipped; P5 CLI tests added (`tests/test_cli.py`).
 
 ### P8 package / docs — todo
 
