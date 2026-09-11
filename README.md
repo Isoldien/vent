@@ -36,7 +36,7 @@ The tool is designed around a few core principles:
 
 - Python 3.11+
 - uv (recommended for dependency and environment management)
-- Optional: a Steam Web API key via the `STEAM_API_KEY` environment variable
+- a Steam Web API key via the `STEAM_API_KEY` environment variable
 
 ---
 
