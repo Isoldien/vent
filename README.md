@@ -176,9 +176,21 @@ uv run pytest -k test_steam_filename
 
 ## Project Status
 
-vent is a focused Steam-to-ES-DE utility that already includes the project structure, CLI entry points, data models, cache logic, search flow, and output writer. It is intended as a practical, offline-friendly utility for generating Steam app ID references for ROM libraries.
+vent (v1.0.0) is a complete, offline-friendly Steam-to-ES-DE utility. The full
+pipeline is implemented and covered by an offline test suite: configuration,
+Steam API client, SQLite app-list cache, fuzzy search, the `.steam` writer, and
+both CLI flows (`search`, `apikey`).
 
-The codebase is still evolving, but the design is intentionally minimal: one command-line interface, one local database cache, and one output format.
+It runs from a source checkout via `uv run vent ...` or installs as a wheel:
+
+```sh
+uv build
+uv pip install dist/vent-1.0.0-py3-none-any.whl
+vent search "portal"
+```
+
+The design is intentionally minimal: one command-line interface, one local
+database cache, and one output format.
 
 ---
 

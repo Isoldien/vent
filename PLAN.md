@@ -78,10 +78,13 @@ Done:
 Full gate (format / check / typecheck / test) is green; 23 passed, 0 skipped.
 All P3–P6 tests unskipped; P5 CLI tests added (`tests/test_cli.py`).
 
-### P8 package / docs — todo
+### P8 package / docs — done
 
-Update README "Status" from "pending" to real usage; verify the
-`vent = "vent.cli:app"` entry point + `--help`; optionally build a hatchling wheel.
+- README "Project Status" now reflects the implemented v1.0.0 + wheel install
+- `vent = "vent.cli:app"` entry point verified from a clean-venv wheel install
+- `uv build` (hatchling) produces sdist + wheel; wheel contents, deps and
+  entry point inspected
+- `dist/` added to `.gitignore`
 
 ## The loop (per phase)
 
