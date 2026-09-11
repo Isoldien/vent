@@ -16,3 +16,8 @@ def test_steam_filename_extension() -> None:
 
 def test_sanitize_repeats_and_trim() -> None:
     assert sanitize_name("   A     :    B       ") == "A-B"
+
+
+def test_sanitize_slashes() -> None:
+    assert sanitize_name("Fate/Stay Night") == "Fate-Stay-Night"
+    assert steam_filename("Fate/Stay Night") == "Fate-Stay-Night.steam"

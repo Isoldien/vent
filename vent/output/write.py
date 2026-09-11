@@ -2,7 +2,7 @@
 
 Filename rule (from the live game name):
     name = game_name.strip()
-    name = name.replace(":", "-")
+    filesystem-invalid chars (/ \\ : * ? " < > |) -> "-"
     runs of whitespace -> "-"
     collapse repeated dashes and trim ends
 contents = the single appID (e.g. 105600).
@@ -18,8 +18,13 @@ from vent.scraper.models import SteamFile
 
 
 def sanitize_name(name: str) -> str:
-    """Return a filesystem-safe stem for ``name`` (colons->'-', whitespace->'-')."""
-    name = name.strip().replace(":", "-")
+    """Return a filesystem-safe stem for ``name``.
+
+    Invalid path characters (``/ \\ : * ? " < > |``) and whitespace runs
+    become ``-``; repeated dashes collapse and ends are trimmed.
+    """
+    name = name.strip()
+    name = re.sub(r'[/:\\*?"<>|]', "-", name)
     name = re.sub(r"\s+", "-", name)
     name = re.sub(r"-{2,}", "-", name)
     return name.strip("-")

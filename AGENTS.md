@@ -29,8 +29,10 @@ bodies are Phase-gated stubs that `raise NotImplementedError`.
   `uv run ruff format .` after writing files.
 - **Outputs are project-local:** `.steam` files go to `output/steam/` (gitignored).
   Never write into a user's ROM / ES-DE directory.
-- **Filename rule** (from the live Steam `name`): `:` -> `-`, whitespace run -> `-`,
-  collapse repeats, trim ends (`Counter-Strike: Global` -> `Counter-Strike-Global`).
+- **Filename rule** (from the live Steam `name`): filesystem-invalid chars
+  (`/ \ : * ? " < > |`) -> `-`, whitespace run -> `-`, collapse repeats, trim ends
+  (`Counter-Strike: Global` -> `Counter-Strike-Global`,
+  `Fate/Stay Night` -> `Fate-Stay-Night`).
 - **Secrets:** API key comes from `STEAM_API_KEY` (env / `.env`; an optional
   `keyring` extra is planned). It must never be written into a `.steam` file —
   that file holds only the appID.
